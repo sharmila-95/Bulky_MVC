@@ -8,6 +8,7 @@ namespace Bulky_web.Controllers
     public class CategoryController : Controller
     {
         private readonly ApplicationDbContext _db;
+       
         public CategoryController(ApplicationDbContext db)
         {
 
@@ -36,6 +37,7 @@ namespace Bulky_web.Controllers
             {
                 _db.Categories.Add(obj);
                 _db.SaveChanges();
+                TempData["success"] = "Category Created successfully!";
                 return RedirectToAction("Index");
             }
             return View();
@@ -63,6 +65,7 @@ namespace Bulky_web.Controllers
             {
                 _db.Categories.Update(obj);
                 _db.SaveChanges();
+                TempData["success"] = "Category updated successfully!";
                 return RedirectToAction("Index");
             }
             return View();
@@ -95,7 +98,8 @@ namespace Bulky_web.Controllers
             }
                 _db.Categories.Remove(obj);
                 _db.SaveChanges();
-                return RedirectToAction("Index");
+            TempData["success"] = "Category Deleted successfully!";
+            return RedirectToAction("Index");
             }
 
 
